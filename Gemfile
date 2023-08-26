@@ -70,3 +70,7 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+gem "nokogiri", "~> 1.15"
+
+gem "open-uri", "~> 0.3.0"
