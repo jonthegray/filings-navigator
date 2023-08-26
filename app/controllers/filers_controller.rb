@@ -1,0 +1,2 @@
+class FilersController < ApplicationController
+end
