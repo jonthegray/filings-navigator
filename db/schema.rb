@@ -10,14 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_26_142910) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_26_214149) do
   create_table "awards", force: :cascade do |t|
     t.decimal "amount"
     t.string "purpose"
-    t.date "tax_period_end"
-    t.integer "filer_id", null: false
+    t.integer "filing_id", null: false
     t.integer "recipient_id", null: false
-    t.index ["filer_id"], name: "index_awards_on_filer_id"
+    t.index ["filing_id"], name: "index_awards_on_filing_id"
     t.index ["recipient_id"], name: "index_awards_on_recipient_id"
   end
 
@@ -31,6 +30,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_26_142910) do
     t.index ["ein"], name: "index_filers_on_ein", unique: true
   end
 
+  create_table "filings", force: :cascade do |t|
+    t.datetime "filing_time"
+    t.date "tax_period_end"
+    t.integer "filer_id", null: false
+    t.index ["filer_id"], name: "index_filings_on_filer_id"
+  end
+
   create_table "recipients", force: :cascade do |t|
     t.string "ein", null: false
     t.string "name"
@@ -41,6 +47,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_26_142910) do
     t.index ["ein"], name: "index_recipients_on_ein", unique: true
   end
 
-  add_foreign_key "awards", "filers"
+  add_foreign_key "awards", "filings"
   add_foreign_key "awards", "recipients"
+  add_foreign_key "filings", "filers"
 end

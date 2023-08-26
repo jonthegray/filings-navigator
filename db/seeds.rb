@@ -55,15 +55,14 @@ end
 
 filer_id_by_ein = {}
 recipient_id_by_ein = {}
-recipient_id_by_name = {}
 
 # Parse filings to seed DB
 filings_by_period_by_ein.each do |filer_ein, filings_by_period|
-  filings_by_period.sort_by(&:first).each do |period_end, filing|
+  filings_by_period.sort_by(&:first).each do |period_end, doc|
     # Create/update filer
-    name_root = filing.at_css("filer > name, filer > businessname")
+    name_root = doc.at_css("filer > name, filer > businessname")
     filer_name = name_root.at_xpath("./businessnameline1 | ./businessnameline1txt").text
-    address = get_address(filing.at_css("filer"))
+    address = get_address(doc.at_css("filer"))
     filer_attrs = address.merge({ein: filer_ein, name: filer_name})
 
     if filer_id_by_ein.include?(filer_ein)
@@ -73,8 +72,12 @@ filings_by_period_by_ein.each do |filer_ein, filings_by_period|
       filer_id_by_ein[filer_ein] = filer.id
     end
 
-    filing.css("irs990schedulei recipienttable").each do |recipient_table|
-      # Create recipient
+    # Create filing
+    return_ts = doc.at_css("returnts").text
+    filing = Filing.create(filing_time: return_ts, tax_period_end: period_end, filer_id: filer.id)
+
+    doc.css("irs990schedulei recipienttable").each do |recipient_table|
+      # Create/update recipient
       recipient_ein = recipient_table.at_xpath("./recipientein | ./einofrecipient")&.text
 
       # Only track awards for identifiable recipients
@@ -98,8 +101,7 @@ filings_by_period_by_ein.each do |filer_ein, filings_by_period|
       amount = recipient_table.at_css("amountofcashgrant, cashgrantamt").text
       purpose = recipient_table.at_css("purposeofgranttxt").text
 
-      Award.create(amount: amount, purpose: purpose, tax_period_end: period_end,
-                   filer_id: filer_id_by_ein[filer_ein], recipient_id: recipient_id_by_ein[recipient_ein])
+      Award.create(amount: amount, purpose: purpose, filing_id: filing.id, recipient_id: recipient.id)
     end
   end
 end
