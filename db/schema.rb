@@ -14,7 +14,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_26_142910) do
   create_table "awards", force: :cascade do |t|
     t.decimal "amount"
     t.string "purpose"
-    t.date "tax_period_start"
     t.date "tax_period_end"
     t.integer "filer_id", null: false
     t.integer "recipient_id", null: false
@@ -23,21 +22,23 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_26_142910) do
   end
 
   create_table "filers", force: :cascade do |t|
-    t.string "ein"
+    t.string "ein", null: false
     t.string "name"
     t.string "address"
     t.string "city"
     t.string "state"
     t.string "zip_code"
+    t.index ["ein"], name: "index_filers_on_ein", unique: true
   end
 
   create_table "recipients", force: :cascade do |t|
-    t.string "ein"
+    t.string "ein", null: false
     t.string "name"
     t.string "address"
     t.string "city"
     t.string "state"
     t.string "zip_code"
+    t.index ["ein"], name: "index_recipients_on_ein", unique: true
   end
 
   add_foreign_key "awards", "filers"

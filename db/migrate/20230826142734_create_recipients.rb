@@ -1,7 +1,7 @@
 class CreateRecipients < ActiveRecord::Migration[7.0]
   def change
     create_table :recipients do |t|
-      t.string :ein
+      t.string :ein, index: {unique: true}, null: false
       t.string :name
       t.string :address
       t.string :city
