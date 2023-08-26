@@ -1,6 +1,5 @@
 # README
 
-Test
 ## Installation
 
 - `bundle install`
@@ -8,11 +7,42 @@ Test
 ## Prepare DB
 
 - `rake db:migrate`
-- **_ TODO _**
+- `rake db:seed`
 
 ## Running the server
 
 - `rails s`
+
+## API Documentation
+
+### GET /awards
+
+- `filing_id: Integer`
+- `min_amount: Float`
+- `max_amount: Float`
+- `page: Integer`
+  - Page size is 50
+
+### GET /awards/[id]
+
+### GET /filers
+
+### GET /filers/[id]
+
+### GET /filings
+
+- `filer_id: Integer`
+
+### GET /filings/[id]
+
+### GET /recipients
+
+- `state: String`
+- `filing_id: Integer`
+- `min_amount: Float`
+- `max_amount: Float`
+
+### GET /recipients/[id]
 
 ### Total time: ~12 hours
 
