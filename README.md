@@ -98,11 +98,12 @@ If this project was to be used in production or continued, enhancements could in
 
 - Add production versions of frontend bundles: uglified, minified, no sourcemaps
 - Add tests for API endpoints, query methods, automated UI tests
+- Add custom API endpoints for client page loads (e.g. filings, recipients, and first page of awards for the Awards page)
 - General UX improvements to Awards page: paging vs. infinite scroll with virtualization, count of results
-- More investment in (or integration with existing) CSS theme: using a nicer font, color palette, component library and/or
+- More investment in (or integration with existing) CSS theme: a nicer font, color palette, component library and/or
 design system
-- Code reorganization: `AwardsPage.tsx` especially is complex and disorganized. Since React is more sandbox-ey than
-prescriptive, code organization and style is enforced by tools like Prettier, linting, and--at worst--unenforced convention.
+- Code reorganization: Since React is more sandbox-ey than prescriptive, code organization and style is enforced by tools
+like Prettier, linting, and--at worst--unenforced convention.
 - Explore better patterns for documenting API endpoints and query parameters
 
 ### Total time: ~12 hours

@@ -1,6 +1,8 @@
 require "nokogiri"
 require "open-uri"
 
+include Api
+
 base_path = "https://filing-service.s3-us-west-2.amazonaws.com/990-xmls/"
 
 file_names = [
