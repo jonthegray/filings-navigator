@@ -1,5 +1,5 @@
 /*
- * Union type representing the string that comes from the .erb
+ * Union type representing the page string that comes from the .erb
  */
 type ReactPage =
   | "home" //

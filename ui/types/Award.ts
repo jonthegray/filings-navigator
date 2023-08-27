@@ -1,4 +1,7 @@
 
+/*
+ * Award data from the server
+ */
 interface JsonAward {
   id: number;
   amount: number;
@@ -7,6 +10,9 @@ interface JsonAward {
   recipient_id: number;
 }
 
+/*
+ * Award model to use on the client
+ */
 class Award {
   id: number;
   amount: number;

@@ -25,15 +25,7 @@ class ReactRootElement extends HTMLElement {
   }
 
   private rerender() {
-    if (!this.isConnected) {
-      return;
-    }
-
     const page = this.getAttribute("page");
-    if (page === null) {
-      return;
-    }
-
     const element = createElement(ReactRoot, { page: (page as ReactPage) });
 
     this._root.render(element);
