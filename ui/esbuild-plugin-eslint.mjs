@@ -1,6 +1,7 @@
 import { ESLint } from "eslint";
 
 // Inspired by https://github.com/robinloeffel/esbuild-plugin-eslint
+// (Copied from another personal project)
 export default (options) => ({
   name: "eslint",
   setup(build) {

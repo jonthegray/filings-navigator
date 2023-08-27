@@ -1,5 +1,6 @@
 import { exec } from "child_process";
 
+// (Copied from another personal project)
 export default () => ({
   name: "tsc",
   setup(build) {

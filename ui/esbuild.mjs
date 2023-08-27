@@ -3,6 +3,7 @@ import { sassPlugin } from "esbuild-sass-plugin";
 import eslintPlugin from "./esbuild-plugin-eslint.mjs";
 import tscPlugin from "./esbuild-plugin-tsc.mjs";
 
+// (Mostly copied from another personal React + TS + ESLint project)
 const config = {
   bundle: true,
   entryPoints: {

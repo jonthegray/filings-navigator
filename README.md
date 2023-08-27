@@ -19,6 +19,7 @@ for in-browser debugging.
 
 Steps to bundle:
 
+- Install `node` 18.x and corresponding `npm`
 - `cd ui`
 - `npm install`
 - `npm run build`
