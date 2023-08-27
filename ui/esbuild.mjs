@@ -11,10 +11,6 @@ const config = {
   },
   logLevel: "info",
   outdir: "../app/assets/react",
-  outExtension: {
-    // .jsbundle prevent Sprockets from adding sourcemaps
-    ".js": ".jsbundle"
-  },
   plugins: [
     sassPlugin(),
     tscPlugin(),

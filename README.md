@@ -9,12 +9,22 @@
 - `rake db:migrate`
 - `rake db:seed`
 
-## Running the server
+## Build JS/CSS bundles
+
+The frontend uses esbuild to create bundles in `app/assets/react/`. Both bundles have sourcemaps
+for in-browser debugging.
+
+- `reactRoot.js`
+- `styles.css`
+
+Steps to bundle:
 
 - `cd ui`
 - `npm install`
 - `npm run build`
-- `cd ..`
+
+## Running the server
+
 - `rails s`
 
 ## API Documentation
@@ -47,6 +57,52 @@
 - `max_amount: Float`
 
 ### GET /api/recipients/[id]
+
+## Frontend Documentation
+
+The frontend is written in React and TypeScript, with ESLint for code inspection.
+
+### Rendering Flow
+
+- `erb` file renders a `<react-root>` web component with the specified `page`
+- The web component (`ui/root/react-root.ts`) connects and creates the React root element
+- The React root element (`ui/views/ReactRoot.tsx`) provides basic layout and dispatches page content to
+the appropriate views
+
+### Awards Page Flow
+
+The Awards page (`ui/views/AwardsPage.tsx`) uses several React-specific tools and concepts:
+
+- The list of awards, current page, and filtering options are stored in state.
+  - In React, components re-render whenever props or state change.
+- On mount, the lists of filings and recipients are loaded from the server into refs.
+  - In React, refs are used for persisting data between renders when changes to the data should
+not trigger re-renders.
+  - Refs are implemented as a "box" or data container, and `.current` contains the actual value of the ref.
+- When the filter values or page changes, the state values are updated and trigger a re-render.
+  - React effects run after every render, including the initial mount.
+  - The second argument to `useEffect` is an array of dependencies that trigger the effect to run. For example
+the load page effect triggers when the `page` state value changes, and the initial load of filings and recipients
+only runs on mount (`[]` means no dependencies i.e. only run the effect on mount).
+  - The page change effect uses a ref called `isMounted`, which is a common React pattern for only running an
+effect on update renders, not the initial mount.
+- Callbacks like `min/maxChanged` and `goNext/Previous` are normal event handlers.
+  - `React.useCallback` is a performance optimization that memoizes the function to return a stable instance
+between renders. Similar to `useEffect`, `useCallback` takes a dependency array argument to specify when the
+function should be re-memoized.
+
+### Next Steps
+
+If this project was to be used in production or continued, enhancements could include:
+
+- Add production versions of frontend bundles: uglified, minified, no sourcemaps
+- Add tests for API endpoints, query methods, automated UI tests
+- General UX improvements to Awards page: paging vs. infinite scroll with virtualization, count of results
+- More investment in (or integration with existing) CSS theme: using a nicer font, color palette, component library and/or
+design system
+- Code reorganization: `AwardsPage.tsx` especially is complex and disorganized. Since React is more sandbox-ey than
+prescriptive, code organization and style is enforced by tools like Prettier, linting, and--at worst--unenforced convention.
+- Explore better patterns for documenting API endpoints and query parameters
 
 ### Total time: ~12 hours
 
