@@ -11,6 +11,10 @@
 
 ## Running the server
 
+- `cd ui`
+- `npm install`
+- `npm run build`
+- `cd ..`
 - `rails s`
 
 ## API Documentation
