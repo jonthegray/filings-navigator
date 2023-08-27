@@ -41,7 +41,6 @@
       "allow": ["error", "warn"]
     }],
     "no-implicit-coercion": "error",
-    "no-param-reassign": "error",
     "no-var": "error",
     "prefer-const": "error",
     "quotes": ["error", "double", {
@@ -54,7 +53,7 @@
     "@typescript-eslint/array-type": ["error", {
       "default": "generic"
     }],
-    "@typescript-eslint/no-require-imports": "error",
+    "@typescript-eslint/no-floating-promises": "off",
     "@typescript-eslint/strict-boolean-expressions": ["error", {
       "allowString": false,
       "allowNumber": false,

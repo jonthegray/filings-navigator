@@ -27,7 +27,12 @@ const config = {
   ]
 };
 
-const result = await esbuild.build(config);
-if (result.errors.length > 0) {
-  process.exit(1);
+if (process.env.WATCH) {
+  const ctx = await esbuild.context(config);
+  await ctx.watch();
+} else {
+  const result = await esbuild.build(config);
+  if (result.errors.length > 0) {
+    process.exit(1);
+  }
 }
