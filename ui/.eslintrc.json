@@ -1,0 +1,64 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "parserOptions": {
+        "project": true
+      }
+    }
+  ],
+  "plugins": ["@typescript-eslint"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/strict-type-checked",
+    "plugin:@typescript-eslint/stylistic-type-checked"
+  ],
+  "ignorePatterns": [
+    "*.config.js",
+    "node_modules/"
+  ],
+  "settings": {
+    "import/resolver": {
+      // From https://stackoverflow.com/questions/55198502/using-eslint-with-typescript-unable-to-resolve-path-to-module
+      "node": {
+        "extensions": [".ts", ".tsx", ".js"]
+      },
+      "typescript": {
+        "project": ["./tsconfig.json"]
+      }
+    },
+    "react": {
+      "version": "detect"
+    }
+  },
+  "rules": {
+    // Built-in ESLint rules
+
+    "eqeqeq": "error",
+    "no-console": ["error", {
+      "allow": ["error", "warn"]
+    }],
+    "no-implicit-coercion": "error",
+    "no-param-reassign": "error",
+    "no-var": "error",
+    "prefer-const": "error",
+    "quotes": ["error", "double", {
+      "avoidEscape": true,
+      "allowTemplateLiterals": true
+    }],
+
+    // @typescript-eslint
+
+    "@typescript-eslint/array-type": ["error", {
+      "default": "generic"
+    }],
+    "@typescript-eslint/no-require-imports": "error",
+    "@typescript-eslint/strict-boolean-expressions": ["error", {
+      "allowString": false,
+      "allowNumber": false,
+      "allowNullableObject": true
+    }]
+  }
+}
