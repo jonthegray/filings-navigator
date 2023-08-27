@@ -3,7 +3,7 @@
  */
 type ReactPage =
   | "home" //
-  | "filers";
+  | "awards";
 
 
 export default ReactPage;

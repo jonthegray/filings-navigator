@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root to: "main#index"
+  get "awards", to: "main#awards"
 
   namespace :api do
     resources :awards, only: [:index, :show]
