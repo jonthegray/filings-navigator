@@ -15,7 +15,7 @@
 
 ## API Documentation
 
-### GET /awards
+### GET /api/awards
 
 - `filing_id: Integer`
 - `min_amount: Float`
@@ -23,26 +23,26 @@
 - `page: Integer`
   - Page size is 50
 
-### GET /awards/[id]
+### GET /api/awards/[id]
 
-### GET /filers
+### GET /api/filers
 
-### GET /filers/[id]
+### GET /api/filers/[id]
 
-### GET /filings
+### GET /api/filings
 
 - `filer_id: Integer`
 
-### GET /filings/[id]
+### GET /api/filings/[id]
 
-### GET /recipients
+### GET /api/recipients
 
 - `state: String`
 - `filing_id: Integer`
 - `min_amount: Float`
 - `max_amount: Float`
 
-### GET /recipients/[id]
+### GET /api/recipients/[id]
 
 ### Total time: ~12 hours
 

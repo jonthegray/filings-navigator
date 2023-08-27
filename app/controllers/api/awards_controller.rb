@@ -1,10 +1,10 @@
-class AwardsController < ApplicationController
+class Api::AwardsController < ApplicationController
   PAGE_SIZE = 50
 
   def index
     page = params[:page]&.to_i || 1
 
-    awards = Award.all
+    awards = Api::Award.all
     awards = awards.where(filing_id: params[:filing_id].to_i) unless params[:filing_id].nil?
     awards = awards.where(amount: params[:min_amount].to_f..) unless params[:min_amount].nil?
     awards = awards.where(amount: ..params[:max_amount].to_f) unless params[:max_amount].nil?
@@ -14,7 +14,7 @@ class AwardsController < ApplicationController
   end
 
   def show
-    award = Award.find(params[:id])
+    award = Api::Award.find(params[:id])
     render json: award
   end
 end

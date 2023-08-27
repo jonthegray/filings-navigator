@@ -1,4 +1,4 @@
-class Award < ApplicationRecord
+class Api::Award < ApplicationRecord
   belongs_to :filing
   belongs_to :recipient
 end
