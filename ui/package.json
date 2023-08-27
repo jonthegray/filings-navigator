@@ -1,0 +1,31 @@
+{
+  "name": "filings-navigator-ui",
+  "version": "1.0.0",
+  "description": "UI for Filings Navigator",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "scripts": {
+    "build": "FORCE_COLOR=true PRODUCTION=true node ./esbuild.mjs",
+    "dev": "FORCE_COLOR=true node ./esbuild.mjs"
+  },
+  "dependencies": {
+    "immutable": "^4.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.15",
+    "@types/react-dom": "^18.0.6",
+    "@typescript-eslint/eslint-plugin": "^6.2.1",
+    "@typescript-eslint/parser": "^6.2.1",
+    "esbuild": "^0.19.1",
+    "esbuild-sass-plugin": "^2.10.0",
+    "eslint": "^8.20.0",
+    "eslint-config-prettier": "^9.0.0",
+    "prettier": "^3.0.1",
+    "sass": "^1.43.4",
+    "typescript": "^5.0.4"
+  }
+}
