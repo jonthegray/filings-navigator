@@ -6,7 +6,7 @@ interface Props {
 }
 
 const ReactRoot = ({ page }: Props) => {
-  return <div>Hello</div>;
+  return <div>Hello from React</div>;
 };
 
 export default ReactRoot;

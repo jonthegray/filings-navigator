@@ -9,7 +9,6 @@ import ReactRoot from "../views/ReactRoot";
 class ReactRootElement extends HTMLElement {
   private readonly _container: HTMLElement;
   private readonly _root: Root;
-  private _page?: ReactPage;
 
   constructor() {
     super();
@@ -22,24 +21,22 @@ class ReactRootElement extends HTMLElement {
     this.rerender = this.rerender.bind(this);
   }
 
-  set page(val: ReactPage) {
-    this._page = val;
-    this.rerender();
-  }
-
   connectedCallback() {
     this.appendChild(this._container);
     this.rerender();
   }
 
   private rerender() {
-    if (!this.isConnected || this._page === undefined) {
+    if (!this.isConnected) {
       return;
     }
 
-    const element = createElement(ReactRoot, {
-      page: this._page
-    });
+    const page = this.getAttribute("page");
+    if (page === null) {
+      return;
+    }
+
+    const element = createElement(ReactRoot, { page: (page as ReactPage) });
 
     this._root.render(element);
   }

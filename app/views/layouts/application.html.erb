@@ -7,6 +7,9 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag 'styles', media: "all" %>
+    <%# .jsbundle prevents Sprockets from adding sourcemaps (already added by esbuild) %>
+    <%= javascript_include_tag 'reactRoot.jsbundle', extname: false %>
   </head>
 
   <body>
