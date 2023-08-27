@@ -1,10 +1,13 @@
 import * as React from "react";
 import Award, { JsonAward } from "../types/Award";
+import AwardsList from "./AwardsList";
 
-const Awards = () => {
+const PAGE_SIZE = 50;
+
+const AwardsPage = () => {
   const [filingPeriodsById, setFilingPeriodsById] = React.useState<Record<number, string>>({});
   const [recipientNamesById, setRecipientNamesById] = React.useState<Record<number, string>>({});
-  const [awards, setAwards] = React.useState<Array<Award> | null>(null);
+  const [awards, setAwards] = React.useState<Array<Award | undefined>>(Array.from({ length: PAGE_SIZE }));
   const [page, setPage] = React.useState(1);
 
   React.useEffect(() => {
@@ -32,7 +35,9 @@ const Awards = () => {
     })();
   }, []);
 
-  return <div>Awards page</div>;
+  return <div className="awards-page">
+    <AwardsList awards={awards} />
+  </div>;
 };
 
-export default Awards;
+export default AwardsPage;

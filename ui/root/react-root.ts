@@ -14,8 +14,6 @@ class ReactRootElement extends HTMLElement {
     super();
 
     this._container = document.createElement("div");
-    this._container.id = "react-root";
-    this._container.classList.add("react-styles");
     this._root = createRoot(this._container);
 
     this.rerender = this.rerender.bind(this);

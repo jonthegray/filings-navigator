@@ -1,2 +1,30 @@
-html {
+react-root {
+  display: block;
+  font-size: 16px;
+  margin: 0 auto;
+  width: 1200px;
+
+  .awards-page {
+    .awards-list {
+      max-height: 80vh;
+      overflow: auto;
+    }
+
+    .award {
+      padding: 7px 0;
+
+      .name {
+        font-size: 24px;
+      }
+
+      .second-row {
+        display: flex;
+
+        * { flex-grow: 0; flex-shrink: 0; }
+        .amount { flex-basis: 100px; }
+        .purpose { flex-grow: 1; }
+        .date { flex-basis: 100px; }
+      }
+    }
+  }
 }
