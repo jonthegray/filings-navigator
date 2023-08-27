@@ -12,7 +12,7 @@ const ReactRoot = ({ page }: Props) => {
   let content;
   switch (page) {
     case "home":
-      header = "Filings Navigator";
+      header = "Filings Navigator Home";
       content = <HomePage />;
       break;
     case "awards":
